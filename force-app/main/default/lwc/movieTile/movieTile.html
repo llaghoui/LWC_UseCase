@@ -1,0 +1,10 @@
+<template>
+    <a onclick={handleClick}>
+        <lightning-card>
+            <img src={pictureUrl} class="slds-align_absolute-center" alt={name}>
+            <p class="slds-p-horizontal_small">Name: {name}</p>
+            <p class="slds-p-horizontal_small">Category: {category}</p>
+            <p slot="footer">Release Date: {releaseDate}</p>
+        </lightning-card>
+    </a>
+</template>

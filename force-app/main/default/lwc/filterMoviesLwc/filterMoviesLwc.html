@@ -1,0 +1,21 @@
+<template>
+    <article class="slds-card">
+
+        <lightning-button variant="brand" label="Add Movie" title="Add Movie" onclick={addMovie} 
+        class="slds-m-right_x-small slds-m-top_x-small add-movie-btn"></lightning-button>
+
+        <div class="slds-var-p-around_medium lgc-bg slds-m-top_x-small">
+            <lightning-input
+                type="text"
+                label="search with movie name"
+                onchange={handleSearchKeyChange}
+            ></lightning-input>
+        </div>
+        <div if:true={movies.data} class="container" >
+            <template for:each={movies.data} for:item="movie" >
+                <c-movie-tile  key={movie.Id} class="box"
+                movie={movie}></c-movie-tile>
+            </template>
+        </div>
+    </article>
+</template>

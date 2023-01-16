@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    margin-left: 10px;
+}
+
+.box {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: medium;
+    font-size: 150%;
+    border-color: lightslategrey;
+}
+
+.add-movie-btn {
+    float: right;
+}
