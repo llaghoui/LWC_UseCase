@@ -37,6 +37,25 @@ public with sharing class MovieController {
             throw new AuraHandledException(exp.getMessage());
         }
     }
+
+    @AuraEnabled()
+    public static boolean removeMovieActors(String movieId) {
+        try {
+            if (movieId == null) {
+              return false;  
+            }
+
+            List<MovieActor__c> listOfMovieActors = Database.query(
+                'SELECT Id, Movie__c, Actor__c FROM MovieActor__c where Movie__c = \''+ movieId +'\'');
+
+            delete listOfMovieActors;
+            return true;
+        } catch (Exception exp) {
+            System.debug(exp.getMessage());
+        
+            throw new AuraHandledException(exp.getMessage());
+        }
+    }
 }
 
 
