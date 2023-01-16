@@ -24,7 +24,6 @@ export default class FilterMoviesLwc extends LightningElement {
 
 	showModalBox(movie) {
 		MoviePreviewLwc.open({
-            description: 'Accessible description of modal\'s purpose',
             movie: movie,
         }).then((result) => {
 			refreshApex(this.movies);

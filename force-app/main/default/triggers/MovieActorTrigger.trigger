@@ -1,4 +1,4 @@
-trigger MovieActorTrigger on MovieActor__c (after insert) {
+trigger MovieActorTrigger on MovieActor__c (after insert, after delete) {
     Set<Id> movie_ids = new set<Id>();
     Set<Id> actor_ids = new Set<Id>();
     
@@ -29,7 +29,7 @@ trigger MovieActorTrigger on MovieActor__c (after insert) {
     }
     
     update actors.values();
-    
+
     // get female actress movies
 	Map<Id, Movie__c> movies_female_Actress = new Map<Id, Movie__c>([
           SELECT Id, (SELECT Actor__r.Id, Actor__r.Gender__c FROM MovieActors__r where Actor__r.Gender__c = 'Female')
@@ -52,13 +52,4 @@ trigger MovieActorTrigger on MovieActor__c (after insert) {
     }
     
     update movies.values();
-    
-    for(Movie__c movie:movies.values()){
-        System.debug(movie.Name__c +'female :'+ movie.FemaleActorsPercentage__c +' male: '+movie.MaleActorsPercentage__c);
-    }
-
-    System.debug('*******');
-    for(Actor__c actor :actors.values()) {
-     System.debug(actor.Name__c+' '+ actor.Number_of_movies__c);   
-    }
 }

@@ -9,6 +9,8 @@ import NAME_FIELD from '@salesforce/schema/Movie__c.Name__c';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import LightningConfirm from 'lightning/confirm';
 
+import removeMovieActors from '@salesforce/apex/MovieController.removeMovieActors';
+
 
 export default class MoviePreviewLwc extends LightningModal {
     @api recordId;
@@ -43,6 +45,8 @@ export default class MoviePreviewLwc extends LightningModal {
         
         deleteRecord(this.recordId)
         .then(() => {
+            removeMovieActors({ movieId: this.recordId });
+
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
